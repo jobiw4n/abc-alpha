@@ -1,0 +1,101 @@
+@font-face {
+    font-family: "Soda-shake";
+    src: url(./assets/fonts//Soda\ Shake.ttf) format("truetype"), url(./assets/fonts/Soda\ Shake.otf) format("opentype")
+  }
+  *{
+    cursor:pointer;
+  }
+
+  body {
+    font-family: Soda-shake;
+    background:#65c2a9;
+    
+  }
+
+  button {
+    width:7em;
+    height:3em;
+    font-size: 1.5em;
+    margin:0;
+    z-index: 3;
+  }
+
+  #completed{
+    position:absolute;position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top:20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display:"none";
+    font-weight: normal;
+    z-index: 2;
+
+  }
+/* 
+  .ui-droppable-active{
+    background: #90aeff;
+  }
+  .ui-droppable-hover{
+    background:#f290ff;
+  } */
+
+  p{font-size: 7.2rem;margin:0}
+  h1{font-size:8rem;}
+
+  .draggable {    display: inline-block;
+  border: 0px;background:#ffffff00}
+
+  .droppable {
+    display: inline-block; margin: 10px;border: 0px;
+  background:#ffffff00;color:#777777;}
+
+
+
+
+
+
+  
+
+  #droppable-container{
+    display: flex;
+
+    justify-content: center;
+    align-items:end;
+    height:40vh;
+    z-index: 1
+
+  }
+
+  #droppable-word{
+
+    display: flex;
+    flex-wrap: nowrap;
+    gap:2em;
+    /* justify-content: center;
+    align-items: center */
+  }
+
+  #draggable-container{
+    display: flex;
+
+    justify-content: center;
+    align-items:start;
+    height:30vh;
+    margin-top:5vh;
+    z-index: 1;
+
+
+  }
+
+  #draggable-word{
+    display: flex;
+    flex-wrap: nowrap;
+    gap:4em;
+    justify-content: center;
+    align-items: center;
+  }
+  .filled{
+    color:#77777700
+  }
