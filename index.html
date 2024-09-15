@@ -1,16 +1,231 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ABC Alpha</title>
+    <link rel="stylesheet" href="jquery-ui.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        canvas {width:100%}
-    </style>
-</head>
-<body>
-    <script src="js/phaser.js"></script>
-    <script src="js/game.js"></script>
-</body>
-</html>
+    <script src="./jquery-3.7.1.js"></script>
+    <script src="./jquery-ui.js"></script>
+  
+    
+    <script src="./words.js"></script>
+    <script src="./jquery.ui.touch-punch.js"></script>
+    <!-- <script src="./jquery.draggableTouch.js"></script> -->
+ 
+    <script>
+ String.prototype.shuffle = function () {
+    var a = this.split(""),
+        n = a.length;
+
+    for(var i = n - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+    }
+    return a.join("");
+}
+
+//-> "veolrm  hth  ke opynug tusbxq ocrad ofeizwj"
+
+    $( function(){
+        generateWord()
+    })
+
+    function newWord(word){
+        var word = '' || word
+        $("#droppable-word")[0].innerHTML=''
+        $('#draggable-word')[0].innerHTML=''
+        generateWord(word)
+    }
+    var currentWord
+    var correctCount = 0
+    var colors = [
+        'red',
+        'blue',
+        'green',
+        'yellow',
+        'pink',
+        'purple'
+    ]
+    
+
+    function getWord(){
+        var j = Math.floor(Math.random() * (words.length))
+        return words[j]
+    }
+        function generateWord(word) {
+        $('#completed')[0].style.display = 'none'
+        //generate word
+        var newWord = word || getWord() // getWord()
+        currentWord = newWord
+        correctCount = 0
+        var shuffledWord = newWord.shuffle()
+        // console.log('word is: '+newWord+' '+newWord[3])
+        var setPoints = []
+        for(var i=0;i<newWord.length;i++){
+            var randomColor = colors[Math.floor(Math.random()*colors.length)]
+            var droppableTemplate = `<div class="ui-widget-header droppable">
+        <p>${newWord[i]}</p>
+      </div>`
+            console.log(randomColor)
+            var draggableTemplate = `  <div id="${shuffledWord[i]}-${i}" style="color:${randomColor}" class="ui-widget-content draggable"><p>${shuffledWord[i]}</p></div>`
+            
+            $("#droppable-word").append(droppableTemplate)
+            $('#draggable-word').append(draggableTemplate)
+            // if(i<newWord.length/2){
+            //     $('#draggable-word-1').append(draggableTemplate)
+            // } else {
+            //     $('#draggable-word-2').append(draggableTemplate)
+            // }
+
+            
+
+            // document.getElementById("droppableWord").appendChild(droppableTemplate)
+
+        }
+        // var gapNum = shuffledWord.length
+        // console.log(gapNum+'gap')
+        // $('#draggable-word')[0].style.gap = gapNum+'em'
+
+        for(var i=0;i<shuffledWord.length;i++){
+            var d = $(`#${shuffledWord[i]}-${i}`)[0]
+            setPoints.push(d.getBoundingClientRect())
+        }
+
+        // console.log(setPoints)
+
+        for(var i=0;i<shuffledWord.length;i++){
+            var d = $(`#${shuffledWord[i]}-${i}`)[0]
+            var coords = setPoints[i]
+            // console.log(coords)
+                d.style.position = "absolute";
+                d.style.left = coords.left+'px';
+                d.style.top = coords.top+'px';
+                d.style.margin = 0
+        }
+
+
+        // function getWord(newWord){ // add randomized list
+        //     if(newWord){
+        //         return word
+        //     } else {
+        //         return 'apple'
+        //     }
+        // }
+
+      $( ".draggable" ).draggable({
+            revert: function(){
+                if ($(this).hasClass('drag-revert')) {
+                $(this).removeClass('drag-revert');
+                return true;
+            }}
+        });
+    //     $(".draggable")
+    // .draggableTouch({
+    //         revert: function(){
+    //             if ($(this).hasClass('drag-revert')) {
+    //             $(this).removeClass('drag-revert');
+    //             return true;
+    //         }}
+    //     }
+
+    // )
+    // .bind("dragstart", function(event, pos) {
+    //     console.log("drag started on:", this, "at position:", pos);
+    // })
+    // .bind("dragend", function(event, pos) {
+    //     console.log("drag ended on:", this, "at position:", pos);
+    // });
+
+      $( ".droppable" ).droppable({
+        drop: function( event, ui ) {
+
+            
+            //get letter of draggable and droppable
+            var droppableLetter = $(this).find("p").html()
+            var draggableLetter = ui.draggable.find('p').html()
+            // console.log(droppableLetter)
+            // console.log(draggableLetter)
+            if(droppableLetter==draggableLetter && !($(this).hasClass('filled'))){
+                //match
+              
+                $( this )
+                    .addClass( "ui-state-highlight" )
+                    .addClass('filled')
+            
+                    ui.draggable.addClass("ui-state-highlight")
+                    //tween draggable to final location
+                // this.droppable
+    // move to parent
+    
+      
+      var rect1 = ui.draggable[0].getBoundingClientRect();
+      var rect2 = this.getBoundingClientRect();
+      
+      var x = (rect2.left - rect1.left);
+      var y = (rect2.top - rect1.top);
+    //   ui.draggable[0].top = 0
+    
+    // console.log(x+" "+y)
+    // $(this).droppable( "option", "accept",null )
+
+    var d = ui.draggable[0];
+
+        d.style.position = "absolute";
+        d.style.left = rect2.left+'px';
+        d.style.top = rect2.top+'px';
+        d.style.margin = 0
+             
+    
+    ui.draggable.draggable("disable")
+   
+    this.style["color"] = "#77777700"
+    correctCount++
+    if(correctCount == currentWord.length){
+        $('#completed')[0].style.display = 'block'
+        console.log('completed!')
+    }
+    
+            } else {
+                console.log('missed')
+                //no match
+                // add 'find new location near dropped point' functionality
+                ui.draggable.addClass('drag-revert')
+             
+            }
+         
+        }
+        
+      });
+
+    //   $('#droppable').droppableTouch()
+    } ;
+    </script>
+  </head>
+  <body>
+
+    <button onclick="newWord()">New Word</button> <button onclick="newWord(currentWord)">Reset</button>
+    <div id="completed"><h1>Yay!</h1><br> <br> <br> <br> <br> <br> <br> <br> <br> <p onclick="newWord()">Again?</p></div>
+    <div id="droppable-container">
+        <div id="droppable-word">
+
+        </div>
+    </div>
+    <div id="draggable-container">
+        <div id="draggable-word">
+
+        </div>
+
+    </div>
+
+
+   
+
+   
+   
+   
+   
+  </body></html>
