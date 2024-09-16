@@ -255,16 +255,18 @@
         
         newWord()
     }
-
+    var playing = true
     function toggleMute(){
         var muteButton = $('#mute')[0]
         var volLevel = backgroundSound.volume
-        if(volLevel>0){ //mute
+        if(playing){ //mute
             backgroundSound.pause()
             muteButton.innerHTML = "Play Music"
+            playing = false
         } else {
             backgroundSound.play()
-            muteButton.innerHTML = "Pause Music"            
+            muteButton.innerHTML = "Pause Music"   
+            playing = true         
         }
     }
     </script>
