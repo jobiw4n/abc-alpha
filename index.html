@@ -49,6 +49,7 @@
 //-> "veolrm  hth  ke opynug tusbxq ocrad ofeizwj"
 
     $( function(){
+        
         generateWord()
     })
 
@@ -150,7 +151,10 @@
                 if ($(this).hasClass('drag-revert')) {
                 $(this).removeClass('drag-revert');
                 return true;
-            }}
+            }},
+            start: function(event, ui){
+                pickupSound.play()
+            }
         });
     //     $(".draggable")
     // .draggableTouch({
@@ -210,6 +214,7 @@
              
     
     ui.draggable.draggable("disable")
+    dropSound.play()
    
     this.style["color"] = "#77777700"
     correctCount++
@@ -217,6 +222,7 @@
         $('.completed')[0].style.display = 'block'
         $('.completed')[1].style.display = 'block'
         console.log('completed!')
+        completeSound.play()
     }
     
             } else {
@@ -233,20 +239,51 @@
 
     //   $('#droppable').droppableTouch()
     } ;
+    var pickupSound = new Audio("./assets/pickup.ogg");; // buffers automatically when created
+    var dropSound = new Audio("./assets/crunch.wav");
+    var completeSound = new Audio("./assets/woohoo.mp3");
+    var backgroundSound = new Audio("./assets/be-happy.mp3");
+    backgroundSound.volume = 0.2
+
+    function play(){
+     
+        $('.play')[0].style.display = 'none'
+        $('#droppable-container')[0].style.display = 'flex'
+        $('#draggable-container')[0].style.display = 'flex'
+        backgroundSound.play()
+        $('.buttons')[0].style.display = 'block'
+        
+        newWord()
+    }
+
+    function toggleMute(){
+        var muteButton = $('#mute')[0]
+        var volLevel = backgroundSound.volume
+        if(volLevel>0){ //mute
+            backgroundSound.volume = 0
+            muteButton.innerHTML = "Play Music"
+        } else {
+            backgroundSound.volume = 0.2
+            muteButton.innerHTML = "Pause Music"            
+        }
+    }
     </script>
   </head>
   <body>
-
-    <button onclick="newWord()">New Word</button> <button onclick="newWord(currentWord)">Reset</button>
+<div style='display:none' class='buttons'> 
+    <button onclick="newWord()">New Word</button> 
+    <button onclick="newWord(currentWord)">Reset Pieces</button>
+    <button id="mute" onclick="toggleMute()" >Pause Music</button></div>
     <div class="completed"><h1>Yay!</h1></div>
   
     <div class="completed again"><h1 onclick="newWord()">Play Again?</h1></div>
-    <div id="droppable-container">
+    <div class="completed again play"><h1 onclick="play()">Play!</h1></div>
+    <div style="display:none" id="droppable-container">
         <div id="droppable-word">
 
         </div>
     </div>
-    <div id="draggable-container">
+    <div style="display:none" id="draggable-container">
         <div id="draggable-word-1" class="draggable-word">
 
         </div>

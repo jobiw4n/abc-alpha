@@ -16,7 +16,11 @@
     
   }
 
+  .buttons{
+    display:"none" !important;
+  }
   button {
+
     position:absolute;
     width:7em;
     height:3em;
@@ -27,6 +31,9 @@
 
   button:nth-child(2) {
     left:8em;
+  }
+  button:nth-child(3) {
+    left:16em;
   }
 
   .completed{
@@ -45,6 +52,11 @@
 
   .again{
     top:50vh;
+    text-decoration: underline;
+  }
+
+  .play{
+    top:30vh;
   }
 /* 
   .ui-droppable-active{

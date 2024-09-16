@@ -162,7 +162,7 @@
 }
 .ui-button {
 	padding: .4em 1em;
-	display: inline-block;
+	/* display: inline-block; */
 	position: relative;
 	line-height: normal;
 	margin-right: .1em;
@@ -791,7 +791,7 @@ button.ui-button::-moz-focus-inner {
 	text-align: center;
 	position: absolute;
 	cursor: default;
-	display: block;
+	/* display: block; */
 	overflow: hidden;
 	right: 0;
 }
