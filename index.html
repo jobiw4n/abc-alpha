@@ -260,10 +260,10 @@
         var muteButton = $('#mute')[0]
         var volLevel = backgroundSound.volume
         if(volLevel>0){ //mute
-            backgroundSound.volume = 0
+            backgroundSound.pause()
             muteButton.innerHTML = "Play Music"
         } else {
-            backgroundSound.volume = 0.2
+            backgroundSound.play()
             muteButton.innerHTML = "Pause Music"            
         }
     }
