@@ -15,6 +15,24 @@
     <!-- <script src="./jquery.draggableTouch.js"></script> -->
  
     <script>
+        
+// // Get the root element
+// var r = document.querySelector(':root');
+
+// // Create a function for getting a variable value
+// function myFunction_get() {
+//   // Get the styles (properties and values) for the root
+//   var rs = getComputedStyle(r);
+//   // Alert the value of the --blue variable
+//   alert("The value of --blue is: " + rs.getPropertyValue('--blue'));
+// }
+
+// // Create a function for setting a variable value
+// function myFunction_set() {
+//   // Set the value of variable --blue to another value (in this case "lightblue")
+//   r.style.setProperty('--blue', 'lightblue');
+// }
+
  String.prototype.shuffle = function () {
     var a = this.split(""),
         n = a.length;
@@ -37,12 +55,16 @@
     function newWord(word){
         var word = '' || word
         $("#droppable-word")[0].innerHTML=''
-        $('#draggable-word')[0].innerHTML=''
+        $('#draggable-word-1')[0].innerHTML=''
+        $('#draggable-word-2')[0].innerHTML=''
         generateWord(word)
     }
     var currentWord
     var correctCount = 0
     var colors = [
+        'red',
+        'blue',
+        'green',
         'red',
         'blue',
         'green',
@@ -57,7 +79,8 @@
         return words[j]
     }
         function generateWord(word) {
-        $('#completed')[0].style.display = 'none'
+        $('.completed')[0].style.display = 'none'
+         $('.completed')[1].style.display = 'none'
         //generate word
         var newWord = word || getWord() // getWord()
         currentWord = newWord
@@ -74,7 +97,13 @@
             var draggableTemplate = `  <div id="${shuffledWord[i]}-${i}" style="color:${randomColor}" class="ui-widget-content draggable"><p>${shuffledWord[i]}</p></div>`
             
             $("#droppable-word").append(droppableTemplate)
-            $('#draggable-word').append(draggableTemplate)
+
+            if(i % 2 != 0 || i == 0){ // if i is even
+                $('#draggable-word-1').append(draggableTemplate)
+            } else {
+                $('#draggable-word-2').append(draggableTemplate)
+            }
+
             // if(i<newWord.length/2){
             //     $('#draggable-word-1').append(draggableTemplate)
             // } else {
@@ -185,7 +214,8 @@
     this.style["color"] = "#77777700"
     correctCount++
     if(correctCount == currentWord.length){
-        $('#completed')[0].style.display = 'block'
+        $('.completed')[0].style.display = 'block'
+        $('.completed')[1].style.display = 'block'
         console.log('completed!')
     }
     
@@ -208,14 +238,19 @@
   <body>
 
     <button onclick="newWord()">New Word</button> <button onclick="newWord(currentWord)">Reset</button>
-    <div id="completed"><h1>Yay!</h1><br> <br> <br> <br> <br> <br> <br> <br> <br> <p onclick="newWord()">Again?</p></div>
+    <div class="completed"><h1>Yay!</h1></div>
+  
+    <div class="completed again"><h1 onclick="newWord()">Play Again?</h1></div>
     <div id="droppable-container">
         <div id="droppable-word">
 
         </div>
     </div>
     <div id="draggable-container">
-        <div id="draggable-word">
+        <div id="draggable-word-1" class="draggable-word">
+
+        </div>
+        <div id="draggable-word-2" class="draggable-word">
 
         </div>
 
