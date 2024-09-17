@@ -47,7 +47,11 @@
 }
 
 //-> "veolrm  hth  ke opynug tusbxq ocrad ofeizwj"
-
+// var pickupSound = new Audio("./assets/woohoo.mp3");; // buffers automatically when created
+//     var dropSound = new Audio("./assets/crunch.wav");
+//     var completeSound = new Audio("./assets/woohoo.mp3");
+    var backgroundSound = new Audio("./assets/be-happy-low.mp3");
+    // backgroundSound.volume = 0.2
     $( function(){
         
         generateWord()
@@ -153,7 +157,10 @@
                 return true;
             }},
             start: function(event, ui){
-                pickupSound.play()
+                // pickupSound.play()
+                // $('.buttons').each(function(){
+                //     this.style.display = 'none'
+                // })
             }
         });
     //     $(".draggable")
@@ -214,7 +221,7 @@
              
     
     ui.draggable.draggable("disable")
-    dropSound.play()
+    // dropSound.play()
    
     this.style["color"] = "#77777700"
     correctCount++
@@ -222,7 +229,7 @@
         $('.completed')[0].style.display = 'block'
         $('.completed')[1].style.display = 'block'
         console.log('completed!')
-        completeSound.play()
+        // completeSound.play()
     }
     
             } else {
@@ -237,13 +244,17 @@
         
       });
 
+    //   var draggables = document.getElementsByClassName('draggable')
+    //   draggables.forEach(draggable=>{
+    //     draggable.addEventListener("touchstart", (event) => {
+    //         pickupSound.play()
+    //     });
+    //   })
+      
+
     //   $('#droppable').droppableTouch()
     } ;
-    var pickupSound = new Audio("./assets/pickup.ogg");; // buffers automatically when created
-    var dropSound = new Audio("./assets/crunch.wav");
-    var completeSound = new Audio("./assets/woohoo.mp3");
-    var backgroundSound = new Audio("./assets/be-happy.mp3");
-    backgroundSound.volume = 0.2
+
 
     function play(){
      
