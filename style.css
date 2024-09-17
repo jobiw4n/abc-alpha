@@ -16,26 +16,31 @@
     
   }
 
-  .buttons{
+  /* .buttons{
     display:"none" !important;
+  } */
+  #button-div{
+    display:flex;
+    z-index: 3;
+    position:absolute;
   }
   button {
-
-    position:absolute;
-    width:calc(10*var(--myWidth)/100);
+    
+    /* padding:0 20px 0 20px; */
+    width:calc(8*var(--myWidth)/100);
     height:calc(4*var(--myWidth)/100);
     font-size: calc(1.4*var(--myWidth)/100);
     /* margin:5px; */
-    left:calc(1*var(--myWidth)/100);
-    z-index: 3;
-  }
 
+
+  }
+/* 
   button:nth-child(2) {
     left: calc(11.5*var(--myWidth)/100);
   }
   button:nth-child(3) {
     left: calc(22*var(--myWidth)/100);
-  }
+  } */
 
   .completed{
     position:absolute;

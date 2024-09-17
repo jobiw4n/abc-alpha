@@ -295,10 +295,10 @@ window.addEventListener("resize", updateSize);
     </script>
   </head>
   <body>
-<div style='display:none' class='buttons'> 
-    <button onclick="newWord()">New Word</button> 
-    <button onclick="newWord(currentWord)">Reset Pieces</button>
-    <button id="mute" onclick="toggleMute()" >Pause Music</button></div>
+<div id="button-div"><div style='display:none' class='buttons'> 
+    <button onclick="newWord()">New<br>Word</button> 
+    <button onclick="newWord(currentWord)">Reset<br>Pieces</button>
+    <button id="mute" onclick="toggleMute()" >Pause<br>Music</button></div></div>
     <div class="completed"><h1>Yay!</h1></div>
   
     <div class="completed again"><h1 onclick="newWord()">Play Again?</h1></div>
