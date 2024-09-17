@@ -263,6 +263,10 @@
         $('#droppable-container')[0].style.display = 'flex'
         $('#draggable-container')[0].style.display = 'flex'
         backgroundSound.play()
+        backgroundSound.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
         $('.buttons')[0].style.display = 'block'
         
         newWord()
