@@ -6,9 +6,9 @@
     cursor:pointer;
   }
 
-  /* :root{
+  :root{
 
-  } */
+  }
 
   body {
     font-family: Soda-shake;
@@ -17,14 +17,14 @@
   }
 
   .buttons{
-    display:"none" !important;
+    display:"none" g!important;
   }
   button {
 
     position:absolute;
     width:7em;
     height:3em;
-    font-size: 1.5em;
+    font-size: 2vh;
     margin:5px;
     z-index: 3;
   }
@@ -66,14 +66,14 @@
     background:#f290ff;
   } */
 
-  p{font-size: 7.2rem;margin:0}
-  h1{font-size:8rem;}
+  p{font-size: 14vh;margin:0}
+  h1{font-size:18vh;}
 
   .draggable {    
     display: inline-block;
     border: 0px;
     background:#ffffff00;
-    padding:5px;
+    padding:3vh;
   }
 
   .droppable {
@@ -134,3 +134,9 @@
   .filled{
     color:#77777700
   }
+/* 
+  @media (max-width: 960px) {
+    p {
+      font-size: 16px;
+    }
+  } */
