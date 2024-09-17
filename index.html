@@ -213,6 +213,7 @@
     // $(this).droppable( "option", "accept",null )
 
     var d = ui.draggable[0];
+        d.style.padding ='5px'
 
         d.style.position = "absolute";
         d.style.left = rect2.left+'px';
@@ -280,6 +281,17 @@
             playing = true         
         }
     }
+
+function updateSize() {
+    console.log(window.innerWidth)
+    // console.log(.8*--myWidth/100)
+    // $(':root').css('--myWidth', window.innerWidth);
+    document.documentElement.style
+        .setProperty('--myWidth',window.innerWidth+'px')
+}
+
+updateSize();
+window.addEventListener("resize", updateSize);
     </script>
   </head>
   <body>

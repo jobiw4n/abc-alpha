@@ -7,7 +7,7 @@
   }
 
   :root{
-
+    --myWidth:1964px;
   }
 
   body {
@@ -17,23 +17,24 @@
   }
 
   .buttons{
-    display:"none" g!important;
+    display:"none" !important;
   }
   button {
 
     position:absolute;
-    width:7em;
-    height:3em;
-    font-size: 2vh;
-    margin:5px;
+    width:calc(10*var(--myWidth)/100);
+    height:calc(4*var(--myWidth)/100);
+    font-size: calc(1.4*var(--myWidth)/100);
+    /* margin:5px; */
+    left:calc(1*var(--myWidth)/100);
     z-index: 3;
   }
 
   button:nth-child(2) {
-    left:8em;
+    left: calc(11.5*var(--myWidth)/100);
   }
   button:nth-child(3) {
-    left:16em;
+    left: calc(22*var(--myWidth)/100);
   }
 
   .completed{
@@ -56,7 +57,7 @@
   }
 
   .play{
-    top:30vh;
+    top:calc(13*var(--myWidth)/100);;
   }
 /* 
   .ui-droppable-active{
@@ -66,14 +67,14 @@
     background:#f290ff;
   } */
 
-  p{font-size: 14vh;margin:0}
-  h1{font-size:18vh;}
+  p{font-size: calc(6*var(--myWidth)/100);margin:0}
+  h1{font-size:calc(9*var(--myWidth)/100);}
 
   .draggable {    
     display: inline-block;
     border: 0px;
     background:#ffffff00;
-    padding:3vh;
+    padding:calc(1.5*var(--myWidth)/100);
   }
 
   .droppable {
@@ -134,8 +135,8 @@
   .filled{
     color:#77777700
   }
-/* 
-  @media (max-width: 960px) {
+
+  /* @media (max-width: 960px) {
     p {
       font-size: 16px;
     }
